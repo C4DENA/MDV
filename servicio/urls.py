@@ -19,5 +19,6 @@ urlpatterns = [
     path('cancel_quote', views.cancel_quote, name='cancel_quote'), 
     path('procces', views.procces, name='procces'), 
     path('complete', views.complete, name='complete'), 
-    path('record', views.record, name='record'), 
+    path('record', views.record, name='record'),
+    path('repairs', views.repairs, name='repairs'), 
 ]

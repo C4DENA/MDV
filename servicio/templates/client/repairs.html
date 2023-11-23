@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    #container_repairs {
+    margin: 24px;
+    border: 2px solid #000;
+    margin-left: 99px;
+    margin-top: 50px;
+}
+
+</style>
+<div class="container" id="container_repairs">
+    <br>
+    <center>    <h2>REPARACIONES</h2>
+    </center>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="table-responsive">
+                <table id="repairs" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Auto</th>
+                            <th>Observaciones</th>
+                            <th>Mecánico</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for r in records %}
+                        {% if r.appointment.state == 'COMPLETADO' %}
+                        <tr>
+                            <td>{{r.appointment.date}}</td>
+                            <td>{{r.appointment.car.plate}}</td>
+                            <td>{{r.observation}}</td>
+                            <td>{{r.user.first_name}} {{r.user.last_name}}</td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
+
+<!-- Modal añadir categorias -->
+{% include "client/quotes/add.html" %}
+
+{% endblock %}

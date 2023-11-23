@@ -42,8 +42,7 @@
                             <td>
                                 {% if q.state == "PENDIENTE" %}
                                 <button type="button" id="delete-element" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancel{{ q.id }}">Cancelar</button>
-                                {% include "client/quotes/cancel.html" %}
-                                
+                                {% include "client/quotes/cancel.html" %}                                
                                 {% endif %}
                             </td>
                         </tr>

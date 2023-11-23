@@ -201,3 +201,20 @@ def record(request):
     mechanic =  request.user.id
     records = Record.objects.filter(user_id = mechanic)
     return render(request, 'mechanic/my_quotes.html', {'title': title,'records': records})
+
+def repairs(request):
+    title = 'Mis autos reparados'
+    user =  request.user.id
+    car_of_user = Cars.objects.filter(user_id = user)
+    # Obtén la lista de IDs de autos como enteros
+    car_ids = list(map(int, car_of_user.values_list('id', flat=True)))
+
+    # Consulta los appointments para todos los IDs de autos a la vez
+    appointments = Appointments.objects.filter(car_id__in=car_ids)
+
+    # Obtén la lista de IDs de appointments como enteros
+    appointment_ids = list(appointments.values_list('id', flat=True))
+
+    # Filtra los records por los IDs de appointments
+    records = Record.objects.filter(appointment_id__in=appointment_ids)
+    return render(request, 'client/repairs.html', {'title': title,'records': records})
