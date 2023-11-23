@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarme</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/authentication.css' %}">
+
+</head>
+<style>
+    body {
+        background-image: url('{% static "images/x.jpg" %}');
+        background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el fondo */
+        background-repeat: no-repeat;
+        
+        /* Otros estilos según tus necesidades */
+    }
+</style>
+<body>
+    <div id="error-message" style="display: none;">{{ error }}</div>
+    <div class="register">
+        <h1 style="color: #105e6f;">Registro de Usuario</h1>
+        <form action="{% url 'register' %}" method="post">
+           
+            {% csrf_token %}
+            <label for="username">Nombre de usuario</label>
+            <input type="text" name="username" required>
+
+            <label for="first_name">Nombres</label>
+            <input type="text" name="first_name" required>
+
+            <label for="last_name">Apellidos</label>
+            <input type="text" name="last_name" required>
+
+            <label for="password">Contraseña</label>
+            <input type="password" name="password1" required>
+
+            <label for="password">Confirmar Contraseña</label>
+            <input type="password" name="password2" required>
+
+            <label for="email">Correo electrónico</label>
+            <input type="email" name="email" required>
+<br>
+            <button id="button" type="submit" >Registrarte</button>
+            <br>
+            <a style="text-decoration: none; color: #105e6f;" href="{% url 'login' %}">Ya tengo un usuario!</a>
+        </form>
+    </div>
+    {% include "../partials/scripts.html" %}
+</body>
+</html>

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    #container_category {
+    margin: 24px;
+    border: 2px solid #000;
+    margin-left: 99px;
+    margin-top: 50px;
+}
+
+</style>
+<div class="container" id="container_category">
+    <br>
+    <center>    <h2>CITAS</h2>
+    </center>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="table-responsive">
+                <table id="cars" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Auto</th>
+                            <th>Observaciones</th>
+                            <th>Estado</th>
+                            <th>
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add_quote">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for q in appointments %}
+                        <tr>
+                            <td>{{q.date}}</td>
+                            <td>{{q.car.plate}}</td>
+                            <td>{{q.observation}}</td>
+                            <td>{{q.state}}</td>
+                            <td>
+                                {% if q.state == "PENDIENTE" %}
+                                <button type="button" id="delete-element" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancel{{ q.id }}">Cancelar</button>
+                                {% include "client/quotes/cancel.html" %}
+                                
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
+
+<!-- Modal añadir categorias -->
+{% include "client/quotes/add.html" %}
+
+{% endblock %}

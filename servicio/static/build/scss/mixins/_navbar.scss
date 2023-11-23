@@ -1,0 +1,65 @@
+// Mixins: Navbar
+//
+
+// Navbar Variant
+@mixin navbar-variant($name, $color) {
+  .navbar-#{$name} {
+    background-color: $color;
+    color: color-yiq($color);
+
+    &.navbar-light {
+      .form-control-navbar {
+        &::placeholder {
+          color: rgba(#2f3d49, .8); // Cambiar a rgba(#2f3d49, .8) o al color deseado
+        }
+        &,
+        + .input-group-append > .btn-navbar {
+          background-color: darken($color, 4%);
+          border-color: darken($color, 9%);
+          color: rgba(#2f3d49, .8); // Cambiar a rgba(#2f3d49, .8) o al color deseado
+        }
+
+        &:focus {
+          &::placeholder {
+            color: #2f3d49; // Cambiar a #2f3d49 o al color deseado
+          }
+          &,
+          + .input-group-append .btn-navbar {
+            background-color: darken($color, 5%);
+            border-color: darken($color, 9%) !important;
+            color: #2f3d49; // Cambiar a #2f3d49 o al color deseado
+          }
+        }
+      }
+    }
+    &.navbar-dark {
+      .form-control-navbar {
+        &::placeholder {
+          color: rgba(#ffffff, .8); // Cambiar a rgba(#ffffff, .8) o al color deseado
+        }
+        &,
+        + .input-group-append > .btn-navbar {
+          background-color: lighten($color, 4%);
+          border-color: lighten($color, 9%);
+          color: rgba(#ffffff, .8); // Cambiar a rgba(#ffffff, .8) o al color deseado
+        }
+
+        &:focus {
+          &::placeholder {
+            color: #ffffff; // Cambiar a #ffffff o al color deseado
+          }
+          &,
+          + .input-group-append .btn-navbar {
+            background-color: lighten($color, 5%);
+            border-color: lighten($color, 9%) !important;
+            color: #ffffff; // Cambiar a #ffffff o al color deseado
+          }
+        }
+      }
+    }
+  }
+}
+
+// Uso del mixin con el color #105e6f
+@include navbar-variant(dark, #105e6f);
+  
